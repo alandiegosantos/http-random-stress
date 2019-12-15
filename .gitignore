@@ -1,0 +1,22 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Ignore compiled target
+http-random-stress
+
+# Remove protobuf generated golang
+**.pb.go
+**.pb.gw.go
+
+#Ignore vendor folder
+vendor
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out

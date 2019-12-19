@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/signal"
 	"runtime"
+	"strings"
 	"sync"
 	"syscall"
 	"time"
@@ -37,6 +38,10 @@ func main() {
 	prometheusAddr := flag.String("prometheusAddress", "0.0.0.0:9090", "Prometheus HTTP Server Address")
 
 	flag.Parse()
+
+	if len(*url) <= 0 && strings.Contains(*url, "http") {
+		logrus.Fatal("Please provide an URL")
+	}
 
 	if *version {
 		fmt.Printf("Version:\t\t%s\n", "0.1")
@@ -154,7 +159,7 @@ func main() {
 
 	wg.Wait()
 
-	fmt.Printf("Report")
+	fmt.Printf("Report\n")
 
 	for i := 0; i < 6; i++ {
 

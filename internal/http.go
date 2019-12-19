@@ -2,6 +2,7 @@ package internal
 
 import (
 	"context"
+	"crypto/tls"
 	"fmt"
 	"math"
 	"math/rand"
@@ -24,6 +25,7 @@ func NewHTTPClient() *http.Client {
 		MaxIdleConns:        3000,
 		MaxIdleConnsPerHost: 3000,
 		IdleConnTimeout:     60 * time.Second,
+		TLSClientConfig:     &tls.Config{InsecureSkipVerify: true},
 	}
 
 	return &http.Client{
@@ -49,8 +51,6 @@ func DoRequest(ctx context.Context, client *http.Client, url string, method stri
 
 		IncrementHttpReqCounter(httpStatusCodeClass, url)
 
-	} else {
-		fmt.Printf("Error: %v\n", err)
 	}
 
 }

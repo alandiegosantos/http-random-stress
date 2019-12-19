@@ -1,7 +1,17 @@
 # http-random-stress
 
-Run this to generate your certs: 
+This load generator tool generates requests using a [Poisson Distribution](https://en.wikipedia.org/wiki/Poisson_distribution), i.e, it generates random number of requests per second based on the rate informed. This simulates how users will interact with your system.
+
+## How to compile it:
 
 ```
-openssl req -new -x509 -config assets/example.org.cnf -keyout assets/server.key -out assets/server.crt -days 365
+$ git clone https://github.com/alandiegosantos/http-random-stress
+$ make -f build/Makefile
+```
+
+## How to use it
+
+Use this command to requests from *https://localhost:34412/* using a rate of **10 rps** for **20s**
+```
+$ ./http-random-stress -rate 10 -url https://localhost:32412/ -timeout 20
 ```
